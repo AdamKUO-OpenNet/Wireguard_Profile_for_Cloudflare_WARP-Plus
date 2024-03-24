@@ -49,9 +49,9 @@ done
 sed -i "s/license_key.*/license_key = \"$warpkey\"/g" $ACCOUNT_FILE
 read -rp "Please setup the device name for this Profile or leave empty for default: " devicename
 if [[ -n $devicename ]]; then
-    run_wgcf update --name $(echo $devicename | sed s/[[:space:]]/_/g)
+    wgcf update --name $(echo $devicename | sed s/[[:space:]]/_/g)
 else
-    run_wgcf update
+    wgcf update
 fi
 run_wgcf generate
 
