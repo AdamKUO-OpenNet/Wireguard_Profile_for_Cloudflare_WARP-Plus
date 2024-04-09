@@ -54,7 +54,7 @@ if [[ -n $devicename ]]; then
 else
     run_wgcf update
 fi
-echo "Generate the Wireguard Profile""
+echo "Generate the Wireguard Profile"
 run_wgcf generate
 
 chmod +x $PROFILE_FILE
