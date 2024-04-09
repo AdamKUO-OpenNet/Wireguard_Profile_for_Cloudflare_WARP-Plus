@@ -25,6 +25,7 @@ run_wgcf() {
 }
 
 # Main script
+clear
 rm -f $ACCOUNT_FILE $PROFILE_FILE
 echo | run_wgcf register
 chmod +x $ACCOUNT_FILE
@@ -49,15 +50,16 @@ done
 sed -i "s/license_key.*/license_key = \"$warpkey\"/g" $ACCOUNT_FILE
 read -rp "Please setup the device name for this Profile or leave empty for default: " devicename
 if [[ -n $devicename ]]; then
-    wgcf update --name $(echo $devicename | sed s/[[:space:]]/_/g)
+    run_wgcf update --name $(echo $devicename | sed s/[[:space:]]/_/g)
 else
-    wgcf update
+    run_wgcf update
 fi
+echo "Generate the Wireguard Profile""
 run_wgcf generate
 
 chmod +x $PROFILE_FILE
 
-clear
+#clear
 green "Profile generated successfully by WGCF！"
 yellow "Your Wireguard Profile of Sporty WARP+："
 red "$(cat $PROFILE_FILE)"
